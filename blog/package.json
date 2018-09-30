@@ -6,7 +6,7 @@
   "scripts": {
     "generate": "prisma generate",
     "deploy": "prisma deploy",
-    "start": "nodemon -e ts,graphql -x ts-node src/index.ts",
+    "script": "ts-node src/script.ts",
     "playground": "graphql playground"
   },
   "keywords": [],
