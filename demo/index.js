@@ -1,4 +1,4 @@
-const { prisma } = require('./generated/prisma')
+import { prisma } from './generated/prisma';
 
 // A `main` function so that we can use async/await
 async function main() {
