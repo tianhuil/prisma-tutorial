@@ -3,7 +3,7 @@ projects:
     schemaPath: src/generated/prisma.graphql
     includes: [
       "prisma.graphql",
-      "datamodel.prisma",
+      "datamodel.graphql",
     ]
     extensions:
       prisma: prisma/prisma.yml
