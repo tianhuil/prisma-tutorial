@@ -1,4 +1,27 @@
 type User {
-  id: ID! @unique
-  name: String!
+  id:         ID! @unique
+  firstName:  String!
+  lastName:   String!
+  about:      String
+  email:      String! @unique
+  hash:       String!
+  createdAt:  DateTime!
+  updatedAt:  DateTime!
+  posts:      [Post!]! @relation(name: "Posts")
+}
+
+type Post {
+	id:         ID! @unique
+  author:     User! @relation(name: "Posts")
+  headline:   String!
+  topic:      PostTopic!
+  body:       String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum PostTopic {
+  DISCUSSION
+  HELP
+  SHOWCASE
 }
