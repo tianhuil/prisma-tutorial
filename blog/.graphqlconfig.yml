@@ -12,6 +12,7 @@ projects:
     schemaPath: src/generated/prisma.graphql
     includes: [
       "prisma.graphql",
+      "seed.graphql",
       "datamodel.graphql",
     ]
     extensions:

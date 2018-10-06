@@ -1,0 +1,19 @@
+mutation {
+  user: createUser (
+    data: {
+      firstName: "Alice",
+      lastName: "Smith",
+      email: "alice@example.com",
+      hash: "xxxx",
+      posts: {
+        create: [
+          {headline: "A" topic: DISCUSSION},
+          {headline: "B" topic: HELP},
+          {headline: "C" topic: DISCUSSION}
+        ]
+      }
+    }
+  ) {
+    id
+  }
+}
