@@ -1,33 +1,9 @@
+# import { Post, PostWhereInput PostOrderByInput } from "generated/prisma.graphql"
+# import { User, UserWhereInput UserOrderByInput } from "generated/prisma.graphql"
+# import { PostTopic } from "generated/prisma.graphql"
+
 scalar DateTime
 
 type Query {
-  posts: [Post!]!
-}
-
-type User {
-  id:         ID!
-  firstName:  String!
-  lastName:   String!
-  about:      String
-  email:      String!
-  hash:       String!
-  createdAt:  DateTime!
-  updatedAt:  DateTime!
-  posts:      [Post!]!
-}
-
-type Post {
-  id:         ID!
-  author:     User!
-  headline:   String!
-  topic:      PostTopic!
-  body:       String
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-enum PostTopic {
-  DISCUSSION
-  HELP
-  SHOWCASE
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
 }
