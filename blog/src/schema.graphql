@@ -1,9 +1,15 @@
-# import { Post, PostWhereInput PostOrderByInput } from "generated/prisma.graphql"
-# import { User, UserWhereInput UserOrderByInput } from "generated/prisma.graphql"
+# import { Post, PostWhereInput, PostWhereUniqueInput, PostOrderByInput, PostConnection } from "generated/prisma.graphql"
+# import { User, UserWhereInput, UserWhereUniqueInput, UserOrderByInput, UserConnection } from "generated/prisma.graphql"
+# import { Node, Query as DBQuery } from "generated/prisma.graphql"
 # import { PostTopic } from "generated/prisma.graphql"
 
 scalar DateTime
 
 type Query {
+  post(where: PostWhereUniqueInput!): Post
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  # postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  # user(where: UserWhereUniqueInput!): User
+  # users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  # usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
 }
