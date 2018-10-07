@@ -1,5 +1,5 @@
 import { GraphQLServer } from 'graphql-yoga'
-import { Prisma } from './generated/prisma-client'
+import { Prisma } from './generated/prisma'
 import { resolvers } from './resolvers'
 
 const db = new Prisma({
