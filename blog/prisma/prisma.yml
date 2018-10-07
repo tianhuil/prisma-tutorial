@@ -14,10 +14,12 @@ datamodel: datamodel.graphql
 seed:
   import: seed.graphql
 
+# This is a strange client that's incompatile with the main codgen result
 generate:
-  - generator: graphql-schema
-    output: ../src/generated/
+  - generator: typescript-client
+    output: ../src/generated/prisma-client/
 
 hooks:
   post-deploy:
+    - graphql get-schema -p prisma
     - graphql codegen
