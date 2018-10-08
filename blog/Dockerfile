@@ -14,4 +14,4 @@ COPY prisma/* /home/workdir/prisma/
 COPY .graphqlconfig.yml .
 
 # Command
-CMD ["yarn", "start"]
+ENTRYPOINT ["yarn", "start"]

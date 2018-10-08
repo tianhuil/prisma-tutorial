@@ -28,6 +28,25 @@ services:
     - postgres:/var/lib/postgresql/data
     networks:
     - blog-network
+  seed-prisma:
+    build: .
+    entrypoint:
+      - yarn
+      - deploy
+    restart: on-failure
+    networks:
+    - blog-network
+  server:
+    build: .
+    ports:
+    - "4000:4000"
+    entrypoint:
+      - yarn
+      - start
+    networks:
+    - blog-network
+    volumes:
+    - .:/home/workdir/
 volumes:
   postgres:
 networks:
