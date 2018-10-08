@@ -1,5 +1,15 @@
-version: '3.5'
+version: '3.7'
 services:
+  postgres:
+    image: postgres:10.5
+    restart: always
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+    volumes:
+    - postgres:/var/lib/postgresql/data
+    networks:
+    - blog-network
   prisma:
     image: prismagraphql/prisma:1.17
     restart: always
@@ -7,6 +17,8 @@ services:
     - "4466:4466"
     networks:
     - blog-network
+    depends_on:
+    - postgres
     environment:
       PRISMA_CONFIG: |
         port: 4466
@@ -18,16 +30,6 @@ services:
             user: prisma
             password: prisma
             migrations: true
-  postgres:
-    image: postgres:10.5
-    restart: always
-    environment:
-      POSTGRES_USER: prisma
-      POSTGRES_PASSWORD: prisma
-    volumes:
-    - postgres:/var/lib/postgresql/data
-    networks:
-    - blog-network
   seed-prisma:
     build: .
     entrypoint:
@@ -36,6 +38,8 @@ services:
     restart: on-failure
     networks:
     - blog-network
+    depends_on:
+    - prisma
   server:
     build: .
     ports:
@@ -45,6 +49,8 @@ services:
       - start
     networks:
     - blog-network
+    depends_on:
+    - prisma
     volumes:
     - .:/home/workdir/
 volumes:
