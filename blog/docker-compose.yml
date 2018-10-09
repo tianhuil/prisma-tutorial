@@ -38,6 +38,8 @@ services:
     restart: on-failure
     networks:
     - blog-network
+    volumes:
+    - ./src/generated:/home/workdir/src/generated
     depends_on:
     - prisma
   server:
@@ -47,6 +49,7 @@ services:
     entrypoint:
       - yarn
       - start
+    restart: always
     networks:
     - blog-network
     depends_on:
