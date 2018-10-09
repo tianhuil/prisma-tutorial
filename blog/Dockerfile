@@ -12,6 +12,7 @@ RUN yarn install
 RUN mkdir -p /home/workdir/prisma
 COPY prisma/* /home/workdir/prisma/
 COPY .graphqlconfig.yml .
+COPY tsconfig.json .
 
 # Command
 ENTRYPOINT ["yarn", "start"]
