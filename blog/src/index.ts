@@ -2,13 +2,13 @@ import { GraphQLServer } from 'graphql-yoga'
 import { Prisma } from './generated/prisma'
 import { resolvers } from './resolvers'
 
+console.log(`Connecting to prisma on ${process.env.PRISMA_ENDPOINT}`)
+
 const db = new Prisma({
   endpoint: process.env.PRISMA_ENDPOINT,
   secret: process.env.PRISMA_SECRET,
   debug: true,
 })
-
-console.log(`Connecting to prisma on ${process.env.PRISMA_ENDPOINT}`)
 
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
