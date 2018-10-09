@@ -42,6 +42,8 @@ services:
     - ./src/generated:/home/workdir/src/generated
     depends_on:
     - prisma
+    env_file:
+    - .env
   server:
     build: .
     ports:
