@@ -55,7 +55,9 @@ services:
     depends_on:
     - prisma
     volumes:
-    - .:/home/workdir/
+    - ./src:/home/workdir/src/
+    env_file:
+    - .env
 volumes:
   postgres:
 networks:
