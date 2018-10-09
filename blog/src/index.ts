@@ -8,6 +8,8 @@ const db = new Prisma({
   debug: true,
 })
 
+console.log(`Connecting to prisma on ${process.env.PRISMA_ENDPOINT}`)
+
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
