@@ -3,9 +3,8 @@ services:
   postgres:
     image: postgres:10.5
     restart: always
-    environment:
-      POSTGRES_USER: prisma
-      POSTGRES_PASSWORD: prisma
+    env_file:
+    - .env
     volumes:
     - postgres:/var/lib/postgresql/data
     networks:
@@ -64,5 +63,5 @@ volumes:
   postgres:
 networks:
   blog-network:
-    name: blog-network
+    name: ${NETWORK_NAME}
     driver: bridge
