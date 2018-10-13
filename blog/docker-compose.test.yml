@@ -1,15 +1,17 @@
 version: '3.7'
 services:
-  bash:
+  test:
     build: .
-    container_name: bash-${ENV}
+    container_name: test-${ENV}
     entrypoint:
-    - /bin/sh
+      - yarn
+      - ts-node
+      - test/server.ts
     restart: on-failure
     networks:
     - blog-network
     depends_on:
-    - build-prisma
+    - prisma
     volumes:
     - ./src:/home/workdir/src/
     - ./test:/home/workdir/test/

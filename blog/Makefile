@@ -1,8 +1,14 @@
-clean-dev:
-	./build/clean-dev.sh
-
 run-dev:
-	./build/run-dev.sh
+	ENV=dev docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+clean-dev:
+	ENV=dev docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
 	
 run-bash:
-	./build/run-bash.sh
+	ENV=dev docker-compose -f docker-compose.yml -f docker-compose.bash.yml run bash
+
+run-test:
+	ENV=test docker-compose -f docker-compose.yml -f docker-compose.test.yml up
+
+clean-test:
+	ENV=test docker-compose -f docker-compose.yml -f docker-compose.test.yml down -v

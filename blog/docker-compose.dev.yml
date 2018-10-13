@@ -2,6 +2,7 @@ version: '3.7'
 services:
   seed:
     build: .
+    container_name: seed-${ENV}
     entrypoint:
     - yarn
     - ts-node
@@ -16,5 +17,5 @@ services:
     - .env
 networks:
   blog-network:
-    name: ${NETWORK_NAME}
+    name: blog-network-${ENV}
     driver: bridge

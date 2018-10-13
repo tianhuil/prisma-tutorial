@@ -2,6 +2,7 @@ version: '3.7'
 services:
   postgres:
     image: postgres:10.5
+    container_name: postgres-${ENV}
     restart: always
     env_file:
     - .env
@@ -11,6 +12,7 @@ services:
     - blog-network
   prisma:
     image: prismagraphql/prisma:1.18
+    container_name: prisma-${ENV}
     restart: always
     ports:
     - "4466:4466"
@@ -19,9 +21,12 @@ services:
     depends_on:
     - postgres
     environment:
-      PRISMA_CONFIG: ${PRISMA_CONFIG}
+      PRISMA_CONFIG_PATH: /home/build/prisma_config.yml
+    volumes:
+    - ./build/:/home/build/
   build-prisma:
     build: .
+    container_name: build-prisma-${ENV}
     entrypoint:
     - yarn
     - deploy
@@ -36,6 +41,7 @@ services:
     - .env
   server:
     build: .
+    container_name: server-${ENV}
     ports:
     - "4000:4000"
     entrypoint:
@@ -54,5 +60,5 @@ volumes:
   postgres:
 networks:
   blog-network:
-    name: ${NETWORK_NAME}
+    name: blog-network-${ENV}
     driver: bridge
