@@ -23,8 +23,8 @@ services:
   build-prisma:
     build: .
     entrypoint:
-      - yarn
-      - deploy
+    - yarn
+    - deploy
     restart: on-failure
     networks:
     - blog-network
@@ -39,8 +39,8 @@ services:
     ports:
     - "4000:4000"
     entrypoint:
-      - yarn
-      - start
+    - yarn
+    - start
     restart: always
     networks:
     - blog-network
