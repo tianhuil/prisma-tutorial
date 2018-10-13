@@ -20,7 +20,7 @@ services:
     - postgres
     environment:
       PRISMA_CONFIG: ${PRISMA_CONFIG}
-  seed-prisma:
+  build-prisma:
     build: .
     entrypoint:
       - yarn

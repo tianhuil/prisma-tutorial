@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  seed:
+    build: .
+    entrypoint:
+    - yarn
+    - ts-node
+    - src/seed.ts
+    - src/seed.graphql
+    restart: on-failure
+    networks:
+    - blog-network
+    depends_on:
+    - build-prisma
+    volumes:
+    - ./src:/home/workdir/src/
+    env_file:
+    - .env
+networks:
+  blog-network:
+    name: ${NETWORK_NAME}
+    driver: bridge

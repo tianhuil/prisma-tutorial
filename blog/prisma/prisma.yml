@@ -10,16 +10,12 @@ datamodel: datamodel.graphql
 # Here, the secret is loaded as an environment variable from .env.
 # secret: ${env:PRISMA_SECRET}
 
-# Defines how to seed data to the database upon the initial deploy.
-seed:
-  import: seed.graphql
-
 # This is a strange client that's incompatile with the main codgen result
 generate:
-  - generator: typescript-client
-    output: ../src/generated/prisma-client/
+- generator: typescript-client
+  output: ../src/generated/prisma-client/
 
 hooks:
   post-deploy:
-    - graphql get-schema -p prisma
-    - graphql codegen -p prisma
+  - graphql get-schema -p prisma
+  - graphql codegen -p prisma

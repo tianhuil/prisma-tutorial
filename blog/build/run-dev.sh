@@ -10,4 +10,4 @@ databases:
     migrations: true
 '
 
-NETWORK_NAME=blog-network-dev PRISMA_CONFIG=${PRISMA_CONFIG} docker-compose up
+NETWORK_NAME=blog-network-dev PRISMA_CONFIG=${PRISMA_CONFIG} docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
