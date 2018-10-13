@@ -1,17 +1,17 @@
 version: '3.7'
 services:
-  seed:
+  bash:
     build: .
     entrypoint:
-    - yarn
-    - ts-node
-    - src/seed.ts
-    - src/seed.graphql
+    - /bin/sh
     restart: on-failure
     networks:
     - blog-network
+    depends_on:
+    - build-prisma
     volumes:
     - ./src:/home/workdir/src/
+    - ./test:/home/workdir/test/
     env_file:
     - .env
 networks:

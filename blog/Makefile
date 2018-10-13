@@ -4,3 +4,5 @@ clean-dev:
 run-dev:
 	./build/run-dev.sh
 	
+run-bash:
+	./build/run-bash.sh
