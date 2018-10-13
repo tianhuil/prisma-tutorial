@@ -1,5 +1,5 @@
 clean:
-	docker-compose down -v
+	./build/clean.sh
 
 run-dev:
 	./build/run-dev.sh
