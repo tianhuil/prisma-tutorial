@@ -3,9 +3,12 @@ services:
   test:
     build: .
     entrypoint:
-      - yarn
-      - ts-node
-      - test/server.ts
+    - dockerize
+    - -wait
+    - http://prisma:4466
+    - yarn
+    - ts-node
+    - test/server.ts
     restart: on-failure
     networks:
     - blog-network

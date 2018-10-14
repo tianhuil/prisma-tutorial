@@ -3,6 +3,9 @@ services:
   seed:
     build: .
     entrypoint:
+    - dockerize
+    - -wait
+    - http://prisma:4466
     - yarn
     - ts-node
     - src/seed.ts
