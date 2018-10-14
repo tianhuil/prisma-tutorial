@@ -2,7 +2,6 @@ version: '3.7'
 services:
   bash:
     build: .
-    container_name: bash-${ENV}
     entrypoint:
     - /bin/sh
     restart: on-failure
@@ -15,7 +14,3 @@ services:
     - ./test:/home/workdir/test/
     env_file:
     - .env
-networks:
-  blog-network:
-    name: blog-network-${ENV}
-    driver: bridge

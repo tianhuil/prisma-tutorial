@@ -20,4 +20,8 @@ db.mutation.createUser({data: {
       body: "hi",
     }]
   }
-}})
+}}).catch(err => {
+  console.log("This sucks")
+  console.log(err)
+  process.exit(1)
+})

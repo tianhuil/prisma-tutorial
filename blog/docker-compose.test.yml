@@ -2,7 +2,6 @@ version: '3.7'
 services:
   test:
     build: .
-    container_name: test-${ENV}
     entrypoint:
       - yarn
       - ts-node
@@ -17,7 +16,3 @@ services:
     - ./test:/home/workdir/test/
     env_file:
     - .env
-networks:
-  blog-network:
-    name: blog-network-${ENV}
-    driver: bridge
