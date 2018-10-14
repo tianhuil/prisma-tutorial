@@ -23,7 +23,7 @@ services:
     volumes:
     - ./config/:/home/config/
   build-prisma:
-    build: .
+    image: blog-image:dev
     entrypoint:
     - dockerize
     - -wait
@@ -40,7 +40,7 @@ services:
     env_file:
     - .env
   server:
-    build: .
+    image: blog-image:dev
     ports:
     - "${SERVER_PORT}:4000"
     entrypoint:

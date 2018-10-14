@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   seed:
-    build: .
+    image: blog-image:dev
     entrypoint:
     - dockerize
     - -wait
