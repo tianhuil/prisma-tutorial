@@ -7,15 +7,13 @@ services:
     - -wait
     - http://prisma:4466
     - yarn
-    - ts-node
-    - test/server.ts
+    - gulp
+    - test
     restart: on-failure
     networks:
     - blog-network
-    depends_on:
-    - prisma
     volumes:
-    - ./src:/home/workdir/src/
-    - ./test:/home/workdir/test/
+    - ./server/src:/home/workdir/src/
+    - ./server/test:/home/workdir/test/
     env_file:
     - .env

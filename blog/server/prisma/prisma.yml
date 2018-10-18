@@ -14,8 +14,3 @@ datamodel: datamodel.graphql
 generate:
 - generator: typescript-client
   output: ../src/generated/prisma-client/
-
-hooks:
-  post-deploy:
-  - graphql get-schema -p prisma
-  - graphql codegen -p prisma

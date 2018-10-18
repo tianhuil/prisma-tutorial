@@ -8,6 +8,22 @@ const db = new Prisma({
   debug: true,
 })
 
+db.mutation.deleteManyPosts({
+  where: {}
+}).catch(err => {
+  console.log("Unable to delete posts")
+  console.log(err)
+  process.exit(1)
+})
+
+db.mutation.deleteManyUsers({
+  where: {}
+}).catch(err => {
+  console.log("Unable to delete posts")
+  console.log(err)
+  process.exit(1)
+})
+
 db.mutation.createUser({data: {
   firstName: "Alice",
   lastName: "Smith",
@@ -18,10 +34,16 @@ db.mutation.createUser({data: {
       headline: "A",
       topic: "HELP",
       body: "hi",
+    }, {
+      headline: "A",
+      topic: "HELP",
+      body: "hi",
     }]
   }
 }}).catch(err => {
-  console.log("This sucks")
+  console.log("Error")
   console.log(err)
   process.exit(1)
 })
+
+

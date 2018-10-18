@@ -2,15 +2,14 @@ version: '3.7'
 services:
   bash:
     image: blog-image:dev
-    entrypoint:
-    - /bin/sh
     restart: on-failure
-    networks:
-    - blog-network
-    depends_on:
-    - build-prisma
     volumes:
-    - ./src:/home/workdir/src/
-    - ./test:/home/workdir/test/
+    - ./server/src:/home/workdir/src
     env_file:
     - .env
+    networks:
+    - blog-network
+networks:
+  blog-network:
+    name: blog-network-${COMPOSE_PROJECT_NAME}
+    driver: bridge

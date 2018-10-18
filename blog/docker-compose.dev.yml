@@ -1,19 +1,18 @@
 version: '3.7'
 services:
-  seed:
+  build-dev:
     image: blog-image:dev
     entrypoint:
     - dockerize
     - -wait
     - http://prisma:4466
     - yarn
-    - ts-node
-    - src/seed.ts
-    - src/seed.graphql
+    - gulp
+    - build-dev
     restart: on-failure
     networks:
     - blog-network
     volumes:
-    - ./src:/home/workdir/src/
+    - ./server/src:/home/workdir/src
     env_file:
     - .env

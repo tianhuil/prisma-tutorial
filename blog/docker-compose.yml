@@ -22,39 +22,6 @@ services:
       PRISMA_CONFIG_PATH: /home/config/prisma_config.yml
     volumes:
     - ./config/:/home/config/
-  build-prisma:
-    image: blog-image:dev
-    entrypoint:
-    - dockerize
-    - -wait
-    - http://prisma:4466
-    - yarn
-    - deploy
-    restart: on-failure
-    networks:
-    - blog-network
-    volumes:
-    - ./src/generated:/home/workdir/src/generated
-    depends_on:
-    - prisma
-    env_file:
-    - .env
-  server:
-    image: blog-image:dev
-    ports:
-    - "${SERVER_PORT}:4000"
-    entrypoint:
-    - yarn
-    - start
-    restart: always
-    networks:
-    - blog-network
-    depends_on:
-    - prisma
-    volumes:
-    - ./src:/home/workdir/src/
-    env_file:
-    - .env
 volumes:
   postgres:
 networks:

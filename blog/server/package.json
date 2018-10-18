@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate": "prisma generate",
-    "deploy": "prisma deploy",
-    "start": "nodemon -e ts,graphql -x ts-node src/index.ts",
-    "playground": "graphql playground"
+    "prisma": "prisma",
+    "graphql": "graphql",
+    "gulp": "gulp"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +18,12 @@
     "prisma-client-lib": "^1.17.1"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
     "graphql-cli": "^2.16.7",
-    "nodemon": "^1.18.4",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-cli": "gulpjs/gulp-cli",
+    "jest": "^23.6.0",
     "prisma": "^1.17.1",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.1"
