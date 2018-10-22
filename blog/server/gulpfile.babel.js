@@ -27,11 +27,8 @@ gulp.task("build-dev",
 
 gulp.task("test-watch", () => {
   gulp.watch(
-    ["test/**/*.ts", "src/**/*.ts"],
-    {
-      ignoreInitial: false,
-      usePolling: true,
-    },
+    [ "test/**/*.ts", "src/**/*.ts" ],
+    { ignoreInitial: false },
     execAndSignal("yarn ts-node test/server.ts")
   )
 })
