@@ -8,42 +8,43 @@ const db = new Prisma({
   debug: true,
 })
 
-db.mutation.deleteManyPosts({
-  where: {}
-}).catch(err => {
-  console.log("Unable to delete posts")
-  console.log(err)
-  process.exit(1)
-})
+async function seedDatabase() {
+  console.log(await db.mutation.deleteManyPosts({
+    where: {}
+  }))
 
-db.mutation.deleteManyUsers({
-  where: {}
-}).catch(err => {
-  console.log("Unable to delete posts")
-  console.log(err)
-  process.exit(1)
-})
+  console.log("Deleted Posts")
 
-db.mutation.createUser({data: {
-  firstName: "Alice",
-  lastName: "Smith",
-  email: "alice@example.com",
-  hash: "xxx",
-  posts: {
-    create: [{
-      headline: "A",
-      topic: "HELP",
-      body: "hi",
-    }, {
-      headline: "A",
-      topic: "HELP",
-      body: "hi",
-    }]
-  }
-}}).catch(err => {
-  console.log("Error")
-  console.log(err)
-  process.exit(1)
-})
+  console.log(await db.mutation.deleteManyUsers({
+    where: {}
+  }))
 
+  console.log("Deleted Users")
 
+  console.log(await db.mutation.createUser({data: {
+    firstName: "Alice",
+    lastName: "Smith",
+    email: "alice@example.com",
+    hash: "xxx",
+    posts: {
+      create: [{
+        headline: "A",
+        topic: "HELP",
+        body: "hi",
+      }, {
+        headline: "A",
+        topic: "HELP",
+        body: "hi",
+      }]
+    }
+  }}))
+
+  console.log("Added Data")
+}
+
+seedDatabase()
+  .then(() => console.log("Done"))
+  .catch(err => {
+    console.log(`Encountered an error: ${err}`)
+    process.exit(1)
+  })

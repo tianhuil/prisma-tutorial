@@ -2,7 +2,6 @@ version: '3.7'
 services:
   bash:
     image: blog-image:dev
-    restart: on-failure
     volumes:
     - ./server/src:/home/workdir/src
     env_file:

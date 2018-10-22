@@ -9,7 +9,6 @@ services:
     - yarn
     - gulp
     - build-dev
-    restart: on-failure
     networks:
     - blog-network
     volumes:
