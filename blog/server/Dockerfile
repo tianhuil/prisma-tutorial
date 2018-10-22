@@ -4,7 +4,7 @@ FROM node:8.12-alpine
 RUN mkdir -p /home/workdir
 WORKDIR /home/workdir
 
-# Install dockerize
+# Some basic dependencies
 RUN apk update && \
 	apk upgrade && \
 	apk add --no-cache bash git openssh
