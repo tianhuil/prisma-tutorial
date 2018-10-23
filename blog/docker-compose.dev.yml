@@ -6,6 +6,8 @@ services:
     - dockerize
     - -wait
     - http://prisma:4466
+    - -timeout
+    - 60s
     - yarn
     - gulp
     - build-dev
