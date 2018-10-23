@@ -29,7 +29,8 @@ gulp.task("test-watch", () => {
   gulp.watch(
     [ "test/**/*.ts", "src/**/*.ts" ],
     { ignoreInitial: false },
-    execAndSignal("yarn ts-node test/server.ts")
+    // bash cannot error below for watch to work
+    execAndSignal("yarn ts-node test/server.ts || true")
   )
 })
 
