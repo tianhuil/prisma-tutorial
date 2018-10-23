@@ -15,6 +15,7 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 # Install ts depedencies
 COPY package.json .
+COPY yarn.lock .
 RUN yarn install
 
 # Copy more files
