@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "graphql": "0.13",
     "graphql-yoga": "^1.16.2",
+    "jsonwebtoken": "^8.3.0",
     "prisma-binding": "^2.1.6",
     "prisma-client-lib": "^1.17.1"
   },
@@ -24,8 +26,12 @@
     "gulp": "^4.0.0",
     "gulp-cli": "^2.0.1",
     "jest": "^23.6.0",
+    "nodemon": "^1.18.4",
     "prisma": "^1.17.1",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.1"
+  },
+  "resolutions": {
+    "graphql": "^14.0.2"
   }
 }
