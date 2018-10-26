@@ -2,7 +2,9 @@ import { GraphQLServer } from 'graphql-yoga'
 import { Prisma } from './generated/prisma'
 import { resolvers } from './resolvers'
 
+console.log("##################################")
 console.log(`Connecting to prisma on ${process.env.PRISMA_ENDPOINT}`)
+console.log("##################################")
 
 const db = new Prisma({
   endpoint: process.env.PRISMA_ENDPOINT,
@@ -16,6 +18,8 @@ const server = new GraphQLServer({
   context: req => ({ ...req, db }),
 } as any)
 
-server.start(({ port }) =>
-  console.log(`Server is running on http://localhost:${port}`),
-)
+server.start(({ port }) => {
+  console.log("##################################")
+  console.log(`Server is running on http://localhost:${port}`)
+  console.log("##################################")
+})
