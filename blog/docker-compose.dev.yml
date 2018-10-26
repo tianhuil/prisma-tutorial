@@ -18,3 +18,27 @@ services:
     - ./server/src:/home/workdir/src
     env_file:
     - .env
+  dev:
+    image: blog-image:dev
+    entrypoint:
+    - dockerize
+    - -wait
+    - http://prisma:4466
+    - -timeout
+    - 60s
+    - yarn
+    - nodemon
+    - -e
+    - ts,graphql
+    - -x
+    - ts-node
+    - src/index.ts
+    restart: on-failure
+    networks:
+    - blog-network
+    ports:
+    - "${SERVER_PORT}:4000"
+    volumes:
+    - ./server/src:/home/workdir/src
+    env_file:
+    - .env

@@ -21,13 +21,19 @@ gulp.task("codegen", execAndSignal("yarn graphql codegen -p prisma"))
 
 gulp.task("seed", execAndSignal("yarn ts-node src/seed.ts src/seed.graphql"))
 
+gulp.task("watch-dev", execAndSignal("yarn nodemon -e ts,graphql -x ts-node src/index.ts"))
+
 gulp.task("build-dev",
-  gulp.series("deploy", gulp.parallel("schema", "codegen"))
+  gulp.series(
+    "deploy",
+    gulp.parallel("schema", "codegen"),
+    "seed",
+  )
 )
 
 gulp.task("test-watch", () => {
   gulp.watch(
-    [ "test/**/*.ts", "src/**/*.ts" ],
+    [ "test/**/*.ts", "src/**/*.graphql", "src/**/*.ts" ],
     { ignoreInitial: false },
     // bash cannot error below for watch to work
     execAndSignal("yarn ts-node test/server.ts || true")
