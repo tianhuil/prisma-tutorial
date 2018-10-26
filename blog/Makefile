@@ -12,8 +12,8 @@ seed-dev:
 clean-dev:
 	env $(shell cat config/dev.env | xargs) docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v
 	
-run-bash:
-	env $(shell cat config/dev.env | xargs) docker-compose -f docker-compose.bash.yml run bash bash
+exec-dev:
+	env $(shell cat config/dev.env | xargs) docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec build-dev /bin/bash
 
 run-test:
 	env $(shell cat config/test.env | xargs) docker-compose -f docker-compose.yml -f docker-compose.test.yml up
