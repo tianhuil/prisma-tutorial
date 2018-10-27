@@ -1,3 +1,5 @@
+import { forwardTo } from 'prisma-binding'
+
 function parent (parent, args, ctx, info) {
   return parent[info.fieldName]
 }
@@ -15,7 +17,5 @@ export const UserTypes = {
 }
 
 export const UserQueries = {
-  async user(parent, args, ctx, info) {
-    return await ctx.db.query.user(args, info)
-  },
+  user: forwardTo('db')
 }
