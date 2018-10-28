@@ -1,0 +1,9 @@
+port: ${PRISMA_PORT}
+databases:
+  default:
+    connector: postgres
+    host: postgres
+    port: ${POSTGRES_PORT}
+    user: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    migrations: true

@@ -19,9 +19,9 @@ services:
     depends_on:
     - postgres
     environment:
-      PRISMA_CONFIG_PATH: /home/config/prisma_config.yml
+      PRISMA_CONFIG_PATH: /app/prisma/prisma_config.yml
     volumes:
-    - ./config/:/home/config/
+    - ./prisma/:/app/prisma/
 volumes:
   postgres:
 networks:
