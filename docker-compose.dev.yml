@@ -17,7 +17,8 @@ services:
     volumes:
     - ./server/src:/home/workdir/src
     env_file:
-    - .env
+    - config/internal.env
+    - config/secret.env
   dev:
     image: blog-image:dev
     entrypoint:
@@ -41,4 +42,5 @@ services:
     volumes:
     - ./server/src:/home/workdir/src
     env_file:
-    - .env
+    - config/internal.env
+    - config/secret.env

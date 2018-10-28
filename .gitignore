@@ -72,5 +72,6 @@ typings/
 # prisma generated output
 generated/
 
-# this file contains secrets
+# these files contain secrets
 prisma_config.yml
+config/secret.env

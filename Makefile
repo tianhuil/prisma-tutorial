@@ -4,7 +4,7 @@ build-dev:
 	docker build server/. -t blog-image:dev
 
 run-dev:
-	env $(shell cat .env | xargs) envsubst < prisma/prisma_config.tmpl.yml > prisma/prisma_config.yml
+	env $(shell cat config/internal.env config/secret.env | xargs) envsubst < prisma/prisma_config.tmpl.yml > prisma/prisma_config.yml
 	env $(shell cat config/dev.env | xargs) docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 
 clean-dev:

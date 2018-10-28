@@ -5,7 +5,8 @@ services:
     volumes:
     - ./server/src:/home/workdir/src
     env_file:
-    - .env
+    - config/internal.env
+    - config/secret.env
     networks:
     - blog-network
     entrypoint:

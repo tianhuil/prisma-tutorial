@@ -4,7 +4,8 @@ services:
     image: postgres:10.5
     restart: always
     env_file:
-    - .env
+    - config/internal.env
+    - config/secret.env
     volumes:
     - postgres:/var/lib/postgresql/data
     networks:
