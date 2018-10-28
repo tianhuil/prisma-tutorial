@@ -4,8 +4,8 @@ services:
     image: postgres:10.5
     restart: always
     env_file:
-    - config/internal.env
-    - config/secret.env
+    - ../config/internal.env
+    - ../config/secret.env
     volumes:
     - postgres:/var/lib/postgresql/data
     networks:
@@ -22,7 +22,7 @@ services:
     environment:
       PRISMA_CONFIG_PATH: /app/prisma/prisma_config.yml
     volumes:
-    - ./prisma/:/app/prisma/
+    - ../prisma/:/app/prisma/
 volumes:
   postgres:
 networks:

@@ -3,10 +3,10 @@ services:
   bash:
     image: blog-image:dev
     volumes:
-    - ./server/src:/home/workdir/src
+    - ../server/src:/home/workdir/src
     env_file:
-    - config/internal.env
-    - config/secret.env
+    - ../config/internal.env
+    - ../config/secret.env
     networks:
     - blog-network
     entrypoint:

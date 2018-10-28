@@ -15,8 +15,8 @@ services:
     networks:
     - blog-network
     volumes:
-    - ./server/src:/home/workdir/src/
-    - ./server/test:/home/workdir/test/
+    - ../server/src:/home/workdir/src/
+    - ../server/test:/home/workdir/test/
     env_file:
-    - config/internal.env
-    - config/secret.env
+    - ../config/internal.env
+    - ../config/secret.env

@@ -15,10 +15,10 @@ services:
     networks:
     - blog-network
     volumes:
-    - ./server/src:/home/workdir/src
+    - ../server/src:/home/workdir/src
     env_file:
-    - config/internal.env
-    - config/secret.env
+    - ../config/internal.env
+    - ../config/secret.env
   dev:
     image: blog-image:dev
     entrypoint:
@@ -40,7 +40,7 @@ services:
     ports:
     - "${SERVER_PORT}:4000"
     volumes:
-    - ./server/src:/home/workdir/src
+    - ../server/src:/home/workdir/src
     env_file:
-    - config/internal.env
-    - config/secret.env
+    - ../config/internal.env
+    - ../config/secret.env
