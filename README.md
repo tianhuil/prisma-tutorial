@@ -19,7 +19,9 @@ The dev environment uses several docker containers.
 `docker-compose/base.yml`:
 
 - `postgres`: Postgres database at the (default postgress) port `5432`
-- `prisma`: Auto-generated prisma server at port `4466`, configured by `prisma_config.yml` talking to `5432`
+- `prisma`: Auto-generated prisma server at port `4466`, configured by `prisma_config.yml` talking to `5432`.
+	- The server is configured via `prisma/prisma.yml`.
+	- The database schema is based on `prisma/datamodel.graphql`.
 - A network whose name is based on `${COMPOSE_PROJECT_NAME}` (which allows for simultaneous `dev` and `test` environments).
 
 
@@ -31,10 +33,13 @@ The dev environment uses several docker containers.
 	- The database is seeded with data from `seed.graphql` via the script `seed.ts`.
 	- It uses `dockerize` to auto-restart on errors and wait for the primsa server on `4466`.
 - `dev`: which uses `nodemon` on `ts-node` to run `index.ts`.
-	- Also mounts the `server/src` folder.
+	- The source files are mounted from the `server/src` folder.
+	- It communicates with the `prisma` server via the schema in the `server/src/generated/*` file.
+	- It exposes a graphql schema that is defined in `server/src/resolvers/*.ts`.
 
 ## Environment Variables:
 The `docker-compose/*.yml` files define docker container and orchestration.  They accept environment variables in two ways:
 
 - Set `env_file` environment variable in the `docker-compose/*.yml` files to pass in `config/*.env` files supplying environment variables that are set inside the docker containers but which are not directly visible to the outside system.
 - Use `cat` to supply `config/*.env`environment variables while invoking `docker-compose` to supply variables that change based on environment.  Currently there are two environments: `dev` and `test`.
+- Use `envsubst` to load  `config/*.env` environment variables into `prisma/prisma_config.yml`.
