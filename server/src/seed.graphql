@@ -1,8 +1,8 @@
 mutation {
-  user: createUser (
+  user1: createUser (
     data: {
       firstName: "Alice",
-      lastName: "Smith",
+      lastName: "Jones",
       email: "alice@example.com",
       hash: "xxxx",
       posts: {
@@ -12,7 +12,25 @@ mutation {
           {headline: "C" topic: DISCUSSION},
           {headline: "D" topic: HELP}
         ]
-      }
+      },
+    }
+  ) {
+    id
+  }
+
+  user2: createUser (
+    data: {
+      firstName: "Bob",
+      lastName: "Smith",
+      email: "bob@example.com",
+      hash: "yyyy",
+      posts: {
+        create: [
+          {headline: "X" topic: DISCUSSION},
+          {headline: "Y" topic: HELP},
+          {headline: "Z" topic: DISCUSSION},
+        ]
+      },
     }
   ) {
     id
