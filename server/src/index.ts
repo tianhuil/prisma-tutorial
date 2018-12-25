@@ -1,4 +1,6 @@
-import { GraphQLServer } from 'graphql-yoga'
+import { ApolloServer } from 'apollo-server';
+import { importSchema } from 'graphql-import';
+import { parse } from 'graphql';
 import { Prisma } from './generated/prisma'
 import { resolvers } from './resolvers'
 
@@ -12,14 +14,14 @@ const db = new Prisma({
   debug: true,
 })
 
-const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
+const server = new ApolloServer({
+  typeDefs: parse(importSchema(__dirname + '/schema.graphql')),
   resolvers,
   context: req => ({ ...req, db }),
 } as any)
 
-server.start(({ port }) => {
+server.listen().then(({ url }) => {
   console.log("##################################")
-  console.log(`Server is running on http://localhost:${port}`)
+  console.log(`Server is running on ${url}`)
   console.log("##################################")
 })
