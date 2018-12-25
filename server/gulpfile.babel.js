@@ -19,7 +19,7 @@ gulp.task("schema", execAndSignal("yarn graphql get-schema -p prisma"))
 
 gulp.task("codegen", execAndSignal("yarn graphql codegen -p prisma"))
 
-gulp.task("seed", execAndSignal("yarn ts-node src/seed.ts src/seed.graphql"))
+gulp.task("seed", execAndSignal("yarn graphql query src/seed.graphql -p prisma -o seed "))
 
 gulp.task("watch-dev", execAndSignal("yarn nodemon -e ts,graphql -x ts-node src/index.ts"))
 
