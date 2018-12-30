@@ -18,6 +18,7 @@ const server = new ApolloServer({
   typeDefs: parse(importSchema(__dirname + '/schema.graphql')),
   resolvers,
   context: req => ({ ...req, db }),
+  tracing: true,
 } as any)
 
 server.listen().then(({ url }) => {
