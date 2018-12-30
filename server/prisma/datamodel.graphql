@@ -16,8 +16,8 @@ type Post {
   headline:   String!
   topic:      PostTopic!
   body:       String
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt:  DateTime!
+  updatedAt:  DateTime!
 }
 
 enum PostTopic {
