@@ -19,6 +19,9 @@ services:
     env_file:
     - ../config/internal.env
     - ../config/secret.env
+  prisma:
+    ports:
+    - "${PRISMA_PORT}:4466"
   dev:
     image: blog-image:dev
     entrypoint:

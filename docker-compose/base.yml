@@ -15,8 +15,6 @@ services:
   prisma:
     image: prismagraphql/prisma:1.18
     restart: always
-    ports:
-    - "${PRISMA_PORT}:4466"
     networks:
     - blog-network
     depends_on:
