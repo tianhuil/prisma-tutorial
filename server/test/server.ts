@@ -9,13 +9,11 @@ const db = new Prisma({
 })
 
 async function seedDatabase() {
-  console.log(await db.mutation.deleteManyPosts({}))
-  console.log("Deleted Posts")
+  await db.mutation.deleteManyPosts({})
 
-  console.log(await db.mutation.deleteManyUsers({}))
-  console.log("Deleted Users")
+  await db.mutation.deleteManyUsers({})
 
-  console.log(await db.mutation.createUser({data: {
+  await db.mutation.createUser({data: {
     firstName: "Alice",
     lastName: "Smith",
     email: "alice@example.com",
@@ -31,8 +29,7 @@ async function seedDatabase() {
         body: "hi",
       }]
     }
-  }}))
-  console.log("Added Data")
+  }})
 
   const postResult = await db.query.postsConnection(
     {}, `{ aggregate { count } }`
