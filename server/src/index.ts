@@ -7,7 +7,6 @@ import { resolvers } from './resolvers'
 export const createServer = () => {
   console.log("##################################")
   console.log(`Connecting to prisma on ${process.env.PRISMA_ENDPOINT}`)
-  console.log("##################################")
 
   const db = new Prisma({
     endpoint: process.env.PRISMA_ENDPOINT,
@@ -20,11 +19,13 @@ export const createServer = () => {
     resolvers,
     context: req => ({ ...req, db }),
     tracing: true,
+    formatError: (err) => { console.log(err.stack); return err },
   } as any)
 }
 
-createServer().listen().then(({ url }) => {
-  console.log("##################################")
-  console.log(`Server is running on ${url}`)
-  console.log("##################################")
-})
+if (require.main === module) {
+  createServer().listen().then(({ url }) => {
+    console.log("##################################")
+    console.log(`Server is running on ${url}`)
+  })
+}
