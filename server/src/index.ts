@@ -5,8 +5,10 @@ import { Prisma } from './generated/prisma'
 import { resolvers } from './resolvers'
 
 export const createServer = () => {
-  console.log("##################################")
-  console.log(`Connecting to prisma on ${process.env.PRISMA_ENDPOINT}`)
+  if (require.main === module) {
+    console.log("##################################")
+    console.log(`Connecting to prisma on ${process.env.PRISMA_ENDPOINT}`)
+  }
 
   const db = new Prisma({
     endpoint: process.env.PRISMA_ENDPOINT,
