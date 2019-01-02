@@ -10,8 +10,52 @@ beforeEach(() => {
 });
 
 
-test('cannot fetch user', () => {
-	const client = createTestClient(createServer())
-	expect(Prisma).toHaveBeenCalledTimes(1)
-	return client.query({query: "query users {id}"})
+test('calls prisma', () => {
+  createTestClient(createServer())
+  expect(Prisma).toHaveBeenCalledTimes(1)
 })
+
+test('cannot fetch user', async () => {
+  // @ts-ignore jest improperly mocks Prisma
+  Prisma.mockImplementation(() => {
+    return {
+      query: {
+        users: () => [{
+          id: 1,
+          firstName: "Bob",
+          lastName: "Smith",
+        }]
+      },
+    }
+  });
+
+  const client = createTestClient(createServer())
+
+  const resp = await client.query({
+    query: `
+      query {
+        users {
+          id
+          firstName
+          lastName
+        }
+      }
+    `
+  })
+  expect(resp.errors).toBeFalsy()
+
+  const resp2 = await client.query({
+    query: `
+      query {
+        users {
+          id
+          firstName
+          lastName
+          hash
+        }
+      }
+    `
+  })
+  expect(resp2.errors).toBeTruthy()
+})
+  
