@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  test:
+    image: blog-image:dev
+    entrypoint:
+    - yarn
+    - jest
+    - --watchAll
+    restart: on-failure
+    volumes:
+    - ../server/src:/home/workdir/src/
+    - ../server/jest.config.js:/home/workdir/jest.config.js

@@ -58,4 +58,3 @@ test('cannot fetch user', async () => {
   })
   expect(resp2.errors).toBeTruthy()
 })
-  
