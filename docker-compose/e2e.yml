@@ -2,7 +2,7 @@ version: '3.7'
 services:
   e2e:
     image: blog-image:dev
-    entrypoint: >
+    entrypoint: |
       bash -c "dockerize -wait http://prisma:4466 -timeout 60s yarn gulp deploy &&
         yarn nodemon -e ts,graphql -x ts-node e2e/server.ts"
     restart: on-failure
