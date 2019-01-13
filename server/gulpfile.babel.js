@@ -21,8 +21,6 @@ gulp.task("codegen", execAndSignal("yarn graphql codegen -p prisma"))
 
 gulp.task("seed", execAndSignal("yarn graphql query src/seed.graphql -p prisma -o seed "))
 
-gulp.task("watch-dev", execAndSignal("yarn nodemon -e ts,graphql -x ts-node src/index.ts"))
-
 gulp.task("build-dev",
   gulp.series(
     "deploy",
@@ -30,14 +28,3 @@ gulp.task("build-dev",
     "seed",
   )
 )
-
-gulp.task("e2e-watch", () => {
-  gulp.watch(
-    [ "e2e/**/*.ts", "src/**/*.graphql", "src/**/*.ts" ],
-    { ignoreInitial: false },
-    // bash cannot error below for watch to work
-    execAndSignal("yarn ts-node e2e/server.ts || true")
-  )
-})
-
-gulp.task("e2e",  gulp.series("deploy", "e2e-watch"))
