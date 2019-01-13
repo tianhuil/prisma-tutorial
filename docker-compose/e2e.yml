@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  test:
+  e2e:
     image: blog-image:dev
     entrypoint:
     - dockerize
@@ -10,13 +10,13 @@ services:
     - 60s
     - yarn
     - gulp
-    - test
+    - e2e
     restart: on-failure
     networks:
     - blog-network
     volumes:
     - ../server/src:/home/workdir/src/
-    - ../server/test:/home/workdir/test/
+    - ../server/e2e:/home/workdir/e2e/
     env_file:
     - ../config/internal.env
     - ../config/secret.env

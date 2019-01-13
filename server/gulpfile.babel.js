@@ -31,13 +31,13 @@ gulp.task("build-dev",
   )
 )
 
-gulp.task("test-watch", () => {
+gulp.task("e2e-watch", () => {
   gulp.watch(
-    [ "test/**/*.ts", "src/**/*.graphql", "src/**/*.ts" ],
+    [ "e2e/**/*.ts", "src/**/*.graphql", "src/**/*.ts" ],
     { ignoreInitial: false },
     // bash cannot error below for watch to work
-    execAndSignal("yarn ts-node test/server.ts || true")
+    execAndSignal("yarn ts-node e2e/server.ts || true")
   )
 })
 
-gulp.task("test",  gulp.series("deploy", "test-watch"))
+gulp.task("e2e",  gulp.series("deploy", "e2e-watch"))
