@@ -1,42 +1,13 @@
 version: '3.7'
 services:
-  build-dev:
-    image: blog-image:dev
-    entrypoint:
-    - dockerize
-    - -wait
-    - http://prisma:4466
-    - -timeout
-    - 60s
-    - yarn
-    - gulp
-    - build-dev
-    restart: on-failure
-    networks:
-    - blog-network
-    volumes:
-    - ../server/src:/home/workdir/src
-    env_file:
-    - ../config/internal.env
-    - ../config/secret.env
   prisma:
     ports:
     - "${PRISMA_PORT}:4466"
   dev:
     image: blog-image:dev
-    entrypoint:
-    - dockerize
-    - -wait
-    - http://prisma:4466
-    - -timeout
-    - 60s
-    - yarn
-    - nodemon
-    - -e
-    - ts,graphql
-    - -x
-    - ts-node
-    - src/index.ts
+    entrypoint: |
+      bash -c "dockerize -wait http://prisma:4466 -timeout 60s yarn gulp build-dev &&
+        yarn nodemon -e ts,graphql -x ts-node src/index.ts"
     restart: on-failure
     networks:
     - blog-network
