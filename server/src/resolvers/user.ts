@@ -18,6 +18,4 @@ export const UserTypes = {
 
 export const UserQueries = {
   user: forwardTo('db'),
-  users: forwardTo('db'),
-  usersConnection: forwardTo('db'),
 }
