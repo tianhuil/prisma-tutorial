@@ -1,8 +1,8 @@
 import { createTestClient } from 'apollo-server-testing'
-import { Prisma } from '../generated/prisma'
-import { createServer } from '../'
+import { Prisma } from '../../generated/prisma'
+import { createServer } from '../../'
 
-jest.mock('../generated/prisma')
+jest.mock('../../generated/prisma')
 
 beforeEach(() => {
   // @ts-ignore jest improperly mocks Prisma

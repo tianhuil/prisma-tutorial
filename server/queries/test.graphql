@@ -1,0 +1,9 @@
+query test {
+  posts(first: 5) {
+    id
+    author {
+      id
+      firstName
+    }
+  }
+}

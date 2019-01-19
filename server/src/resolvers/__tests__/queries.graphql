@@ -1,0 +1,16 @@
+query GoodPublicUser {
+  users {
+    id
+    firstName
+    lastName
+  }
+}
+
+query BadPublicUser {
+  users {
+    id
+    firstName
+    lastName
+    hash
+  }
+}
