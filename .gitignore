@@ -75,3 +75,5 @@ generated/
 # these files contain secrets
 prisma_config.yml
 config/secret.env
+
+__generated__
